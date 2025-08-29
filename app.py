@@ -124,8 +124,8 @@ if st.button("Predict"):
     try:
         conn = mysql.connector.connect(
             host="localhost",
-            user="",         # 👉 your MySQL username
-            password="",   # 👉 your MySQL password
+            user="root",         # 👉 your MySQL username
+            password="m936113@",   # 👉 your MySQL password
             database="heart_disease_db"
         )
         cursor = conn.cursor()
