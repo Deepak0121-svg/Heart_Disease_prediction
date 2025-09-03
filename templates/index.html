@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="overlay">
+        <div class="content">
+            <h1>❤️ Heart Disease Prediction App</h1>
+            <form action="/predict" method="post" class="form-box">
+                <input type="number" name="age" placeholder="Age" required>
+                <select name="sex" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <select name="cp" required>
+                    <option value="typical angina">typical angina</option>
+                    <option value="atypical angina">atypical angina</option>
+                    <option value="non-anginal">non-anginal</option>
+                    <option value="asymptomatic">asymptomatic</option>
+                </select>
+                <input type="number" name="trestbps" placeholder="Resting BP (mmHg)" required>
+                <input type="number" name="chol" placeholder="Cholesterol (mg/dl)" required>
+                <select name="fbs" required>
+                    <option value="Yes">Fasting Blood Sugar > 120 (Yes)</option>
+                    <option value="No">No</option>
+                </select>
+                <select name="restecg" required>
+                    <option value="normal">normal</option>
+                    <option value="st-t abnormality">st-t abnormality</option>
+                    <option value="lv hypertrophy">lv hypertrophy</option>
+                </select>
+                <input type="number" name="thalach" placeholder="Max Heart Rate" required>
+                <select name="exang" required>
+                    <option value="Yes">Exercise Angina: Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <input type="number" step="0.1" name="oldpeak" placeholder="Oldpeak" required>
+                <select name="slope" required>
+                    <option value="upsloping">upsloping</option>
+                    <option value="flat">flat</option>
+                    <option value="downsloping">downsloping</option>
+                </select>
+                <button type="submit" class="btn">Predict</button>
+            </form>
+            <h2>{{ prediction_text }}</h2>
+        </div>
+    </div>
+</body>
+</html>
