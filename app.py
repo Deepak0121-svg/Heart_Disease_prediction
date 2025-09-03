@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 import mysql.connector
 import joblib
+import os
 
 app = Flask(__name__)
 
@@ -81,13 +82,13 @@ def predict():
             result_text = f"✅ Patient unlikely to have Heart Disease (Risk Probability: {proba:.2f})"
 
         # ----------------------------
-        # Save to MySQL
+        # Save to MySQL (optional)
         # ----------------------------
         try:
             conn = mysql.connector.connect(
                 host="localhost",
                 user="root",
-                password="",  # ⚠️ Works fine, mysql-connector handles special chars
+                password="m936113@",  # your local MySQL password
                 database="heart_disease_db",
                 port=3306
             )
@@ -117,4 +118,6 @@ def predict():
         return render_template("index.html", prediction_text=f"Error: {e}")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # ✅ Important for Render: use PORT from environment, not default 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
